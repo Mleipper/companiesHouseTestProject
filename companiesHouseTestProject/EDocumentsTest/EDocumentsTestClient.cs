@@ -112,7 +112,7 @@ namespace companiesHouseTestProject.EDocumentsTest
             companies.AddRange(companiesToAdd);
         }
 
-        private CompanyModel CreateCompanyModel(Items company)
+        private CompanyModel CreateCompanyModel(Companies company)
         {
             return new CompanyModel()
             {
