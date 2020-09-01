@@ -6,6 +6,7 @@
 
         public string CompanyAddress { get; set; }
 
-        public long CompanyNumber { get; set; }
+        // company numbers can have leading zeros
+        public string CompanyNumber { get; set; }
     }
 }

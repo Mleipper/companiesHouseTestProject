@@ -22,9 +22,24 @@ namespace companiesHouseTestProject.EDocumentsTest
             throw new System.NotImplementedException();
         }
 
-        public Task<CompanyModel> GetGivenCompany(int company_number)
+        public async Task<CompanyModel> GetGivenCompany(string company_number)
         {
-            throw new System.NotImplementedException();
+            var response = await _apiClient.PagedCompaniesSearch(company_number, null, null);
+
+            if (response is null || !response.Items.Any())
+            {
+                return default;
+            }
+
+            var companyData = response.Items.Where(m => m.Company_number == company_number)
+                .FirstOrDefault();
+
+            if (companyData is object)
+            {
+                return CreateCompanyModel(companyData);
+            }
+
+            return default;
         }
 
         public async Task<List<CompanyModel>> Search(string company_name)
@@ -62,12 +77,6 @@ namespace companiesHouseTestProject.EDocumentsTest
 
         private void ProcessResponse(List<CompanyModel> companies, CompaniesHouseSearchResponse companiesHouseData)
         {
-            //foreach (var company in companiesHouseData.Items)
-            //{
-            //    var companyModel = CreateCompanyModel(company);
-
-            //    companies.Add(companyModel);
-            //}
             var companiesToAdd = companiesHouseData.Items
                 .Select(c => CreateCompanyModel(c));
 
@@ -80,7 +89,7 @@ namespace companiesHouseTestProject.EDocumentsTest
             {
                 CompanyAddress = company.Address_snippet,
                 CompanyName = company.Title,
-                CompanyNumber = long.Parse(company.Company_number)
+                CompanyNumber = company.Company_number
             };
         }
     }
