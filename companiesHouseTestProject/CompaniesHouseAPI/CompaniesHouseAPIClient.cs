@@ -21,7 +21,6 @@ namespace companiesHouseTestProject.CompaniesHouseAPI
             _client.UseNewtonsoftJson();
         }
 
-
         public async Task<CompaniesHouseSearchResponse> PagedCompaniesSearch(string searchString, int? pageNumber, int? itemsPerPage)
         {
             var startIndex = itemsPerPage * pageNumber;
@@ -39,9 +38,10 @@ namespace companiesHouseTestProject.CompaniesHouseAPI
             }
 
             var response = await _client.ExecuteAsync<CompaniesHouseSearchResponse>(request);
+
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new Exception("Http status did not return o");
+                throw new Exception("Http status did not return ok");
             }
             return response.Data;
         }

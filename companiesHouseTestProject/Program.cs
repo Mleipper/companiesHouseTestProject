@@ -26,8 +26,13 @@ namespace companiesHouseTestProject
                 var company = await eDocumentsClient.GetGivenCompany(companyModel.CompanyNumber);
 
                 Console.WriteLine($"Company name: {company.CompanyName} company Number: {company.CompanyNumber} called found on company number.");
-            }
 
+                var changes = await eDocumentsClient.GetChanges(companyModel);
+
+                Console.WriteLine($"The model has: {changes.Count()} changes");
+
+                changes.ForEach(c => Console.WriteLine(c)); 
+            }
 
             Console.ReadKey();
         }

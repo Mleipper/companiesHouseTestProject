@@ -17,26 +17,49 @@ namespace companiesHouseTestProject.EDocumentsTest
             _apiClient = companiesHouseApiClient;
         }
 
-        public Task<List<string>> GetChanges(CompanyModel company_model)
+        public async Task<List<string>> GetChanges(CompanyModel company_model)
         {
-            throw new System.NotImplementedException();
+            var company = await GetGivenCompany(company_model.CompanyNumber);
+            List<string> changes = new List<string>();
+
+            if (!company.CompanyName.Equals(company_model.CompanyName))
+            {
+                changes.Add($"Company name has changed from: {company_model.CompanyName} to {company.CompanyName}");
+
+                company_model.CompanyName = company.CompanyName;
+            }
+
+            if (!company.CompanyAddress.Equals(company_model.CompanyAddress))
+            {
+                changes.Add($"Company Address has changed from: {company_model.CompanyAddress} to {company.CompanyAddress}");
+                company_model.CompanyAddress = company.CompanyAddress;
+            }
+
+            return changes;
         }
 
         public async Task<CompanyModel> GetGivenCompany(string company_number)
         {
-            var response = await _apiClient.PagedCompaniesSearch(company_number, null, null);
-
-            if (response is null || !response.Items.Any())
+            try
             {
-                return default;
+                var response = await _apiClient.PagedCompaniesSearch(company_number, null, null);
+
+                if (response is null || !response.Items.Any())
+                {
+                    return default;
+                }
+
+                var companyData = response.Items.Where(m => m.Company_number == company_number)
+                    .FirstOrDefault();
+
+                if (companyData is object)
+                {
+                    return CreateCompanyModel(companyData);
+                }
             }
-
-            var companyData = response.Items.Where(m => m.Company_number == company_number)
-                .FirstOrDefault();
-
-            if (companyData is object)
+            catch (Exception ex)
             {
-                return CreateCompanyModel(companyData);
+                Console.WriteLine($"Exception occured while in method {nameof(GetGivenCompany)} details: {ex.Message}");
             }
 
             return default;
