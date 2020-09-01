@@ -8,5 +8,7 @@
 
         // company numbers can have leading zeros
         public string CompanyNumber { get; set; }
+
+        public string CompanyStatus { get; set; }
     }
 }

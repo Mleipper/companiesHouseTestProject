@@ -35,6 +35,12 @@ namespace companiesHouseTestProject.EDocumentsTest
                 company_model.CompanyAddress = company.CompanyAddress;
             }
 
+            if (!company.CompanyStatus.Equals(company_model.CompanyStatus))
+            {
+                changes.Add($"Company Address has changed from: {company_model.CompanyStatus} to {company.CompanyStatus}");
+                company_model.CompanyStatus = company.CompanyStatus;
+            }
+
             return changes;
         }
 
@@ -112,7 +118,8 @@ namespace companiesHouseTestProject.EDocumentsTest
             {
                 CompanyAddress = company.Address_snippet,
                 CompanyName = company.Title,
-                CompanyNumber = company.Company_number
+                CompanyNumber = company.Company_number,
+                CompanyStatus = company.Company_status
             };
         }
     }
