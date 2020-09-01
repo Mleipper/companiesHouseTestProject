@@ -1,4 +1,5 @@
 ﻿using companiesHouseTestProject.CompaniesHouseAPI;
+using companiesHouseTestProject.EDocumentsTest;
 using System;
 
 namespace companiesHouseTestProject
@@ -8,11 +9,12 @@ namespace companiesHouseTestProject
         static async System.Threading.Tasks.Task Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            
+            var companiesHouseApiClient = new CompaniesHouseAPIClient("API KEY");
 
-            var CompaniesHouseApiClient = new CompaniesHouseAPIClient("APIKEY here");
+            var eDocumentsClient = new EDocumentsTestClient(companiesHouseApiClient);
 
-            var testData = await CompaniesHouseApiClient.PagedCompaniesSearch("Edocuments", 0, 100);
-
+            var testData = await eDocumentsClient.Search("Edocuments");
         }
     }
 }

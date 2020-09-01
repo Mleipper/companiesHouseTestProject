@@ -1,4 +1,4 @@
-﻿namespace companiesHouseTestProject.EDocumentsTestClient.EDocumentsModels
+﻿namespace companiesHouseTestProject.EDocumentsTest.EDocumentsModels
 {
     public class CompanyModel
     {
