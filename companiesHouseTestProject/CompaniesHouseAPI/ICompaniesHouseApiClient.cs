@@ -1,7 +1,7 @@
-﻿using companiesHouseTestProject.CompaniesHouseAPIClient.CompaniesHouseResponses;
+﻿using companiesHouseTestProject.CompaniesHouseAPI.CompaniesHouseResponses;
 using System.Threading.Tasks;
 
-namespace companiesHouseTestProject.CompaniesHouseAPIClient
+namespace companiesHouseTestProject.CompaniesHouseAPI
 {
     public interface ICompaniesHouseApiClient
     {

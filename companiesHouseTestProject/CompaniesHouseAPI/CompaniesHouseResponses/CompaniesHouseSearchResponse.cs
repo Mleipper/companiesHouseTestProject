@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace companiesHouseTestProject.CompaniesHouseAPIClient.CompaniesHouseResponses
+namespace companiesHouseTestProject.CompaniesHouseAPI.CompaniesHouseResponses
 {
     public class CompaniesHouseSearchResponse
     {

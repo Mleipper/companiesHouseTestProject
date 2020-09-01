@@ -1,0 +1,27 @@
+﻿{
+    "items_per_page": 100,
+        "kind": "search#companies",
+        "start_index": 0,
+        "items": [
+        {
+                "links": {
+                    "self": "/company/04236508"
+                },
+                "matches": {
+                    "snippet": [],
+                    "title": [1, 10]
+                },
+                "kind": "searchresults#company",
+                "company_number": "04236508",
+                "address_snippet": "75 Springfield Road, Chelmsford, Essex, CM2 6JB",
+                "title": "EDOCUMENTS LIMITED",
+                "date_of_creation": "2001-06-18",
+                "description_identifier": ["incorporated-on"],
+                "snippet": "", "company_type": "ltd",
+                "address": { "address_line_1": "Springfield Road", "postal_code": "CM2 6JB", "locality": "Essex", "address_line_2": "Chelmsford", "premises": "75" },
+                "description": "04236508 - Incorporated on 18 June 2001",
+                "company_status": "active"
+        }],
+        "total_results": 1,
+        "page_number": 1
+}
