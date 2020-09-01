@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace companiesHouseTestProject.EDocumentsTest
 
 {
-    public class EDocumentsTestClient : IEdocumentsTestClient
+    public class EDocumentsTestClient : IEDocumentsTestClient
     {
         private readonly ICompaniesHouseApiClient _apiClient;
         public EDocumentsTestClient(ICompaniesHouseApiClient companiesHouseApiClient)
@@ -19,8 +19,20 @@ namespace companiesHouseTestProject.EDocumentsTest
 
         public async Task<List<string>> GetChanges(CompanyModel company_model)
         {
+            if (company_model is null)
+            {
+                throw new ArgumentNullException("Company Model is required");
+            }
+
             var company = await GetGivenCompany(company_model.CompanyNumber);
+
             List<string> changes = new List<string>();
+
+            if (company is null)
+            {
+                changes.Add("Company not found!");
+                return changes;
+            }
 
             if (!company.CompanyName.Equals(company_model.CompanyName))
             {

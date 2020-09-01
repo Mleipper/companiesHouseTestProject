@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace companiesHouseTestProject.EDocumentsTest
 {
-    public interface IEdocumentsTestClient
+    public interface IEDocumentsTestClient
     {
         Task<List<CompanyModel>> Search(string company_name);
         Task<CompanyModel> GetGivenCompany(string company_number);

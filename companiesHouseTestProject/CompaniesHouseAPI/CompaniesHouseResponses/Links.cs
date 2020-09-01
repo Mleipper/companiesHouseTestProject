@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace companiesHouseTestProject.CompaniesHouseAPI.CompaniesHouseResponses
+﻿namespace companiesHouseTestProject.CompaniesHouseAPI.CompaniesHouseResponses
 {
     public class Links
     {
